@@ -1,1 +1,14 @@
-
+{
+  "id": "{FE19004E-1849-C3EB-DEBE-11CF32804220}",
+  "name": "EseraGaszaehler",
+  "type": 3,
+  "vendor": "ESERA-Automation",
+  "aliases":
+  [
+	"Zubehoer Gaszähler Auswertung"
+  ],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "ESERA"
+}
