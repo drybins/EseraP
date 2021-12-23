@@ -17,13 +17,13 @@ class EseraGaszaehler extends IPSModule
 		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounter($_IPS[\'TARGET\']);');   
 	}
 	
-	    public function Destroy()
+    public function Destroy()
 	{
         //Never delete this line!
         parent::Destroy();
     }
 	
-	    public function ApplyChanges()
+    public function ApplyChanges()
 	{
         //Never delete this line!
         parent::ApplyChanges();
@@ -32,17 +32,18 @@ class EseraGaszaehler extends IPSModule
         //$this->SetMonthlyTimerInterval();
         //$this->SetYearlyTimerInterval();    
     }
-	    public function ReceiveData($JSONString) 
+
+	public function ReceiveData($JSONString) 
 	{
         // not implemented   
     }
 	
-	    public function RefreshCounter()
+	public function RefreshCounter()
 	{
        $this->calculate();   
     }
 	
-	    private function Calculate()
+	private function Calculate()
 	{
 		$CounterOld = GetValue($this->GetIDForIdent("Counter"));
 		$CounterNew = GetValue($this->ReadPropertyInteger("CounterID"));
@@ -51,9 +52,9 @@ class EseraGaszaehler extends IPSModule
         $this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
 	}
 	
-	    private function DebugMessage($Sender, $Message)
+	private function DebugMessage($Sender, $Message)
 	{
         $this->SendDebug($Sender, $Message, 0);
     }
 }
-?>	
+?>
