@@ -14,7 +14,9 @@ class EseraGaszaehler extends IPSModule
 		
 		$this->RegisterVariableInteger("Counter", "Counter", "", 1);
 		
-		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounter($_IPS[\'TARGET\']);');   
+		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounter($_IPS[\'TARGET\']);'); 
+		$this->DebugMessage("Counter", "CounterOld: " . 'ESERA_RefreshCounter($_IPS[\'TARGET\']);');
+
 	}
 	
     public function Destroy()
@@ -49,7 +51,7 @@ class EseraGaszaehler extends IPSModule
 		$CounterNew = GetValue($this->ReadPropertyInteger("CounterID"));
 		
 		$this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
-        $this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
+        	$this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
 	}
 	
 	private function DebugMessage($Sender, $Message)
