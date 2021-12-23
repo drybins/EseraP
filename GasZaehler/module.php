@@ -15,8 +15,8 @@ class EseraGaszaehler extends IPSModule
 		$this->RegisterVariableInteger("Counter", "Counter", "", 1);
 		
 		//$this->RegisterTimer("Refresh", 0, "echo 'Hallo Welt';"); 
-		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounter($_IPS[\'TARGET\']);'); 
-		$this->DebugMessage("Counter", "CounterOld: " . 'ESERA_RefreshCounter($_IPS[\'TARGET\']);');
+		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounterG($_IPS[\'TARGET\']);'); 
+		//$this->DebugMessage("Counter", "CounterOld: " . 'ESERA_RefreshCounter($_IPS[\'TARGET\']);');
 
 	}
 	
@@ -41,7 +41,7 @@ class EseraGaszaehler extends IPSModule
         // not implemented   
     }
 	
-	public function RefreshCounter()
+	public function RefreshCounterG()
 	{
        $this->calculate();   
     }
