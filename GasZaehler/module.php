@@ -30,7 +30,7 @@ class EseraGaszaehler extends IPSModule
 	{
         //Never delete this line!
         parent::ApplyChanges();
-        $this->SetTimerInterval("Refresh", 180 * 1000);
+        $this->SetTimerInterval("Refresh", 5000);
         //$this->SetDailyTimerInterval();
         //$this->SetMonthlyTimerInterval();
         //$this->SetYearlyTimerInterval();    
@@ -50,7 +50,7 @@ class EseraGaszaehler extends IPSModule
 	{
 		$CounterOld = GetValue($this->GetIDForIdent("Counter"));
 		$CounterNew = GetValue($this->ReadPropertyInteger("CounterID"));
-		SetValue($this->GetIDForIdent("Counter"), 2000);
+		SetValue($this->GetIDForIdent("Counter"), $CounterNew);
 		echo 'Hallo Welt';
 		$this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
         	$this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
