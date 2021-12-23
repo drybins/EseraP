@@ -50,8 +50,9 @@ class EseraGaszaehler extends IPSModule
 	{
 		$CounterOld = GetValue($this->GetIDForIdent("Counter"));
 		$CounterNew = GetValue($this->ReadPropertyInteger("CounterID"));
-		SetValue($this->GetIDForIdent("Counter"), $CounterNew);
-		echo 'Hallo Welt';
+		$delta = $CounterNew - $CounterOld;
+		SetValue($this->GetIDForIdent("Counter"), $delta);
+		
 		$this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
         	$this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
 	}
