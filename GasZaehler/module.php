@@ -13,6 +13,7 @@ class EseraGaszaehler extends IPSModule
         $this->RegisterPropertyInteger("LimitActive", 100);
 		
 		$this->RegisterVariableInteger("Counter", "Counter", "", 1);
+		$this->RegisterVariableFloat("Leistung", "Leistung", "~Gas", 2);
 		
 		//$this->RegisterTimer("Refresh", 0, "echo 'Hallo Welt';"); 
 		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounterG($_IPS[\'TARGET\']);'); 
@@ -30,7 +31,7 @@ class EseraGaszaehler extends IPSModule
 	{
         //Never delete this line!
         parent::ApplyChanges();
-        $this->SetTimerInterval("Refresh", 5000);
+        $this->SetTimerInterval("Refresh", 10000);
         //$this->SetDailyTimerInterval();
         //$this->SetMonthlyTimerInterval();
         //$this->SetYearlyTimerInterval();    
@@ -51,7 +52,11 @@ class EseraGaszaehler extends IPSModule
 		$CounterOld = GetValue($this->GetIDForIdent("Counter"));
 		$CounterNew = GetValue($this->ReadPropertyInteger("CounterID"));
 		$delta = $CounterNew - $CounterOld;
-		SetValue($this->GetIDForIdent("Counter"), $delta);
+		$Factor = $this->GetFactor($this->ReadPropertyInteger("Impulses"));
+		$delta_qm = ($delta * $Factor) * 20;
+		
+		SetValue($this->GetIDForIdent("Counter"), $CounterNew);
+		SetValue($this->GetIDForIdent("Leistung"), $delta_qm);
 		
 		$this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
         	$this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
@@ -60,6 +65,31 @@ class EseraGaszaehler extends IPSModule
 	private function DebugMessage($Sender, $Message)
 	{
         $this->SendDebug($Sender, $Message, 0);
+    }
+	
+	private function GetFactor($Impulses)
+	{
+        switch ($Impulses){
+            case 250:
+              return (0.004);
+            break;
+              
+            case 500:
+              return (0.002);
+            break;
+              
+            case 800:
+              return (0.00125);
+            break;
+              
+            case 1000:
+              return (0.001);
+            break;
+              
+            case 2000:
+              return (0.0005);
+            break;
+        }    
     }
 }
 ?>
