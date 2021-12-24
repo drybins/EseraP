@@ -25,12 +25,21 @@ class EseraGaszaehler extends IPSModule
 		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 23);		
 		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 24);
 		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 25);
+	    
+		$this->RegisterVariableInteger("MonatCounter", "Counter Monat", "", 30);
+        $this->RegisterVariableFloat("VerbrauchMonatm", "Verbrauch am Monat in m³", "~Gas", 31);
+        $this->RegisterVariableFloat("VerbrauchMonatkwh", "Verbrauch am Monat in kwh", "Kirsch.kWh", 32);
+		$this->RegisterVariableFloat("VerbrauchVormonatm", "Verbrauch Vormonat in m³", "~Gas", 33);		
+		$this->RegisterVariableFloat("VerbrauchVormonatkwh", "Verbrauch Vormonat in kWh", "Kirsch.kWh", 34);
+		$this->RegisterVariableFloat("VerbrauchVormonatEuro", "Verbrauch Vormonat in €", "~Euro", 35);
 
 	    $ArchiveHandlerID = IPS_GetInstanceListByModuleID('{43192F0B-135B-4CE7-A0A7-1475603F3060}');
 	    AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVortagm"), true);
 	    AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVortagkwh"), true);
 		AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVortagEuro"), true);
-
+	    AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVormonatm"), true);
+	    AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVormonatkwh"), true);
+		AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVormonatEuro"), true);
 		
 		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounterG($_IPS[\'TARGET\']);');
 		$this->RegisterTimer("DailyReset", 0, 'ESERA_ResetPowerMeterDaily($_IPS[\'TARGET\']);');
