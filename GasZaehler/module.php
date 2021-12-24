@@ -124,9 +124,9 @@ class EseraGaszaehler extends IPSModule
 		
 		// Counter Jahr  
         $CounterJahr = GetValue($this->GetIDForIdent("JahrCounter")) + $delta;
-        SetValue($this->GetIDForIdent("JahrCounter"), $CounterMonat);
-        SetValue($this->GetIDForIdent("VerbraucJahrm"), $CounterMonat * $Factor);
-		SetValue($this->GetIDForIdent("VerbrauchJahrkwh"), $CounterTag * $Factor * $Zustandszahl * $Brennwert);
+        SetValue($this->GetIDForIdent("JahrCounter"), $CounterJahr);
+        SetValue($this->GetIDForIdent("VerbrauchJahrm"), $CounterJahr * $Factor);
+		SetValue($this->GetIDForIdent("VerbrauchJahrkwh"), $CounterJahr * $Factor * $Zustandszahl * $Brennwert);
 	}
 	
 	private function DebugMessage($Sender, $Message)
