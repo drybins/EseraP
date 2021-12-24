@@ -64,7 +64,9 @@ class EseraGaszaehler extends IPSModule
 		$CounterTag = GetValue($this->GetIDForIdent("TagCounter")) + $delta;
         SetValue($this->GetIDForIdent("TagCounter"), $CounterTag);
         SetValue($this->GetIDForIdent("VerbrauchTagm"), $CounterTag * $Factor);
-		$FactorKWh = $Factor * (0.9692*11.293);
+		$Zustandszahl = 0.9692;
+		$Brennwert = 11.293;
+		//actorKWh = 0.9692*11.293;
 		//SetValue($this->GetIDForIdent("VerbrauchTagKWh"), $CounterTag * $Factor * 0,9692 * 11,293);
 		
 		//$this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
