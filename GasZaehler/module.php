@@ -19,7 +19,9 @@ class EseraGaszaehler extends IPSModule
 		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 4);
 		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in kwh", "Kirsch.kWh", 5);
 		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 6);
-		
+		$ArchiveHandlerID = IPS_GetInstanceListByModuleID('{43192F0B-135B-4CE7-A0A7-1475603F3060}');
+		echo "ArchiveID = $ArchiveHandlerID[0] \r\n";
+	    	//AC_SetLoggingStatus(39147 /*[Archive]*/, 53716 /*[TestVariable]*/, true);
 		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 7);
 		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 8);
 		
@@ -38,9 +40,7 @@ class EseraGaszaehler extends IPSModule
 	{
         //Never delete this line!
         parent::ApplyChanges();
-		$ArchiveHandlerID = IPS_GetInstanceListByModuleID('{43192F0B-135B-4CE7-A0A7-1475603F3060}')[0];
-		echo "ArchiveID = $ArchiveHandlerID \r\n";
-	    	//AC_SetLoggingStatus(39147 /*[Archive]*/, 53716 /*[TestVariable]*/, true);
+
         $this->SetTimerInterval("Refresh", 180 * 1000);
         $this->SetDailyTimerInterval();
         //$this->SetMonthlyTimerInterval();
