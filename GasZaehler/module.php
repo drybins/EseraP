@@ -68,7 +68,7 @@ class EseraGaszaehler extends IPSModule
 		$Brennwert = 11.293;
 		//$FactorKWh = 0.9692*11.293;
 		SetValue($this->GetIDForIdent("VerbrauchTagkwh"), $CounterTag * $Factor * $Zustandszahl * $Brennwert);
-		//echo 
+		echo "Zustandszahl = $AnnualLimit \r\n";
 		$this->DebugMessage("Counter", "Zustandszahl: " . $AnnualLimit);
         //$this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
 	}
