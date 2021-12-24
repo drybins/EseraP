@@ -21,7 +21,7 @@ class EseraGaszaehler extends IPSModule
 		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 6);
 		$ArchiveHandlerID = IPS_GetInstanceListByModuleID('{43192F0B-135B-4CE7-A0A7-1475603F3060}');
 		//echo "ArchiveID = $ArchiveHandlerID[0] \r\n";
-	    	//AC_SetLoggingStatus(39147 /*[Archive]*/, 53716 /*[TestVariable]*/, true);
+	    	AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchTagkwh"), true);
 		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 7);
 		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 8);
 		
