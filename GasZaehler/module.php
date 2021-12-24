@@ -143,9 +143,9 @@ class EseraGaszaehler extends IPSModule
 		$Tar = $Target->getTimestamp();
 		$Interval = $Diff * 1000;  
 	   	$this->SetTimerInterval("DailyReset", $Interval);
-		echo "Interval = $Interval \r\n";
-		echo "Target =  $Tar";
-		//SetValue($this->GetIDForIdent("DailyResetTime"), $Target);
+		//echo "Interval = $Interval \r\n";
+		//echo "Target =  $Tar";
+		SetValue($this->GetIDForIdent("DailyResetTime"), $Tar);
     }
 }
 ?>
