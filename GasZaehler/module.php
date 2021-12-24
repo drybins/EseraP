@@ -52,7 +52,7 @@ class EseraGaszaehler extends IPSModule
 	private function Calculate()
 	{
 		// Jahresgrenzwert
-        $AnnualLimit = $this->ReadPropertyInteger("AnnualLimit");
+        $AnnualLimit = $this->ReadPropertyFloat("AnnualLimit");
 		$CounterOld = GetValue($this->GetIDForIdent("Counter"));
 		$CounterNew = GetValue($this->ReadPropertyInteger("CounterID"));
 		$delta = $CounterNew - $CounterOld;
