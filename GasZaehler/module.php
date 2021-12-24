@@ -93,14 +93,16 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("VerbrauchVormonatm"), GetValue($this->GetIDForIdent("VerbrauchMonatm")));
 		SetValue($this->GetIDForIdent("VerbrauchVormonatkwh"), GetValue($this->GetIDForIdent("VerbrauchMonatkwh")));
 		SetValue($this->GetIDForIdent("VerbrauchVormonatEuro"), GetValue($this->GetIDForIdent("VerbrauchMonatkwh") * 0.1066));
-        SetValue($this->GetIDForIdent("VerbrauchVormonatm"), 0);
-		SetValue($this->GetIDForIdent("VerbrauchVormonatkwh"), 0);
+        SetValue($this->GetIDForIdent("VerbrauchMonatm"), 0);
+		SetValue($this->GetIDForIdent("VerbrauchMonatkwh"), 0);
     }
     public function ResetPowerMeterYearly(){
-        //SetValue($this->GetIDForIdent("JahrCounter"), 0);
-        //SetValue($this->GetIDForIdent("LeistungVorjahr"), GetValue($this->GetIDForIdent("LeistungJahr")));
-        //SetValue($this->GetIDForIdent("LeistungJahr"), 0);
-		//SetValue($this->GetIDForIdent("AnnualLimit"), 0);
+        SetValue($this->GetIDForIdent("JahrCounter"), 0);
+        SetValue($this->GetIDForIdent("VerbrauchVorjahrm"), GetValue($this->GetIDForIdent("VerbrauchJahrm")));
+		SetValue($this->GetIDForIdent("VerbrauchVorjahrkwh"), GetValue($this->GetIDForIdent("VerbrauchJahrkwh")));
+		SetValue($this->GetIDForIdent("VerbrauchVorjahrEuro"), GetValue($this->GetIDForIdent("VerbrauchVorjahrkwh") * 0.1066));
+        SetValue($this->GetIDForIdent("VerbrauchJahrm"), 0);
+		SetValue($this->GetIDForIdent("VerbrauchJahrkwh"), 0);
     }
 	
 	public function RefreshCounterG()
