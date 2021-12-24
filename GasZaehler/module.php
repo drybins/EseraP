@@ -18,12 +18,15 @@ class EseraGaszaehler extends IPSModule
 		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 3);
 		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 4);
 		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in kwh", "Kirsch.kWh", 5);
-		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 6);
-		$ArchiveHandlerID = IPS_GetInstanceListByModuleID('{43192F0B-135B-4CE7-A0A7-1475603F3060}');
-		//echo "ArchiveID = $ArchiveHandlerID[0] \r\n";
-	    	AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchTagkwh"), true);
+		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 6);		
 		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 7);
 		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 8);
+
+	    $ArchiveHandlerID = IPS_GetInstanceListByModuleID('{43192F0B-135B-4CE7-A0A7-1475603F3060}');
+	    AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVortagm"), true);
+	    AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVortagkwh"), true);
+		AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVortagEuro"), true);
+
 		
 		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounterG($_IPS[\'TARGET\']);');
 		$this->RegisterTimer("DailyReset", 0, 'ESERA_ResetPowerMeterDaily($_IPS[\'TARGET\']);');
