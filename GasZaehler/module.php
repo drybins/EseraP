@@ -12,9 +12,9 @@ class EseraGaszaehler extends IPSModule
         $this->RegisterPropertyFloat("AnnualLimit", 0.9692);
         $this->RegisterPropertyInteger("LimitActive", 100);
 		
-		$this->RegisterVariableInteger("DailyReset", "Tages Reset Time", "~UnixTimestamp", 1);
-	    $this->RegisterVariableInteger("DailyReset", "Monats Reset Time", "~UnixTimestamp", 2);
-		$this->RegisterVariableInteger("DailyReset", "Jahres Reset Time", "~UnixTimestamp", 3);
+		$this->RegisterVariableInteger("DailyResetTime", "Tages Reset Time", "~UnixTimestamp", 1);
+	    $this->RegisterVariableInteger("MonthlyResetTime", "Monats Reset Time", "~UnixTimestamp", 2);
+		$this->RegisterVariableInteger("YearlyResetTime", "Jahres Reset Time", "~UnixTimestamp", 3);
 		
 		$this->RegisterVariableInteger("Counter", "Counter", "", 10);
 		$this->RegisterVariableFloat("Verbrauch", "Verbrauch", "~Gas", 11);
@@ -141,8 +141,8 @@ class EseraGaszaehler extends IPSModule
 		$Target->setTime(0,0,1); 
 		$Diff =  $Target->getTimestamp() - $Now->getTimestamp(); 
 		$Interval = $Diff * 1000;  
-    	$this->SetTimerInterval("DailyReset", $Interval);
-		SetValue($this->GetIDForIdent("VerbrauchTagm"), $Interval);
+	   	$this->SetTimerInterval("DailyReset", $Interval);
+		SetValue($this->GetIDForIdent("DailyResetTime"), $Interval);
     }
 }
 ?>
