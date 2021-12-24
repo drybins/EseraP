@@ -12,15 +12,17 @@ class EseraGaszaehler extends IPSModule
         $this->RegisterPropertyFloat("AnnualLimit", 0.9692);
         $this->RegisterPropertyInteger("LimitActive", 100);
 		
-		$this->RegisterVariableInteger("Counter", "Counter", "", 1);
-		$this->RegisterVariableFloat("Verbrauch", "Verbrauch", "~Gas", 2);
+		$this->RegisterVariableInteger("DailyReset", "Tages Reset Time", "~UnixTimestamp", 1);
 		
-		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 3);
-		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 4);
-		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in kwh", "Kirsch.kWh", 5);
-		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 6);		
-		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 7);
-		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 8);
+		$this->RegisterVariableInteger("Counter", "Counter", "", 10);
+		$this->RegisterVariableFloat("Verbrauch", "Verbrauch", "~Gas", 11);
+		
+		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 12);
+		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 13);
+		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in kwh", "Kirsch.kWh", 14);
+		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 15);		
+		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 16);
+		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 17);
 
 	    $ArchiveHandlerID = IPS_GetInstanceListByModuleID('{43192F0B-135B-4CE7-A0A7-1475603F3060}');
 	    AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVortagm"), true);
