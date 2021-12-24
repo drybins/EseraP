@@ -17,9 +17,13 @@ class EseraGaszaehler extends IPSModule
 		
 		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 3);
 		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 4);
-		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in KWh", "Kirsch.kWh", 5);
+		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in kwh", "Kirsch.kWh", 5);
+		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 6);
+		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 7;
+		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 8;
 		
-		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounterG($_IPS[\'TARGET\']);'); 
+		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounterG($_IPS[\'TARGET\']);');
+		$this->RegisterTimer("DailyReset", 0, 'ESERA_ResetPowerMeterDaily($_IPS[\'TARGET\']);');
 		
 	}
 	
@@ -34,7 +38,7 @@ class EseraGaszaehler extends IPSModule
         //Never delete this line!
         parent::ApplyChanges();
         $this->SetTimerInterval("Refresh", 180 * 1000);
-        //$this->SetDailyTimerInterval();
+        $this->SetDailyTimerInterval();
         //$this->SetMonthlyTimerInterval();
         //$this->SetYearlyTimerInterval();    
     }
@@ -42,6 +46,19 @@ class EseraGaszaehler extends IPSModule
 	public function ReceiveData($JSONString) 
 	{
         // not implemented   
+    }
+	
+	public function ResetPowerMeterDaily()
+	{
+        $this->SetDailyTimerInterval();
+		//$this->SetMonthlyTimerInterval();
+		//$this->SetYearlyTimerInterval();
+        SetValue($this->GetIDForIdent("TagCounter"), 0);
+        SetValue($this->GetIDForIdent("VerbrauchVortagm"), GetValue($this->GetIDForIdent("VerbrauchTagm")));
+		SetValue($this->GetIDForIdent("VerbrauchVortagkwh"), GetValue($this->GetIDForIdent("VerbrauchTagkwh")));
+		SetValue($this->GetIDForIdent("VerbrauchVortagEuro"), GetValue($this->GetIDForIdent("VerbrauchTagkwh") * 0.1066)));
+        SetValue($this->GetIDForIdent("VerbrauchTagm"), 0);
+		SetValue($this->GetIDForIdent("VerbrauchTagkwh"), 0);
     }
 	
 	public function RefreshCounterG()
@@ -103,6 +120,17 @@ class EseraGaszaehler extends IPSModule
               return (0.0005);
             break;
         }    
+    }
+		
+	protected function SetDailyTimerInterval()
+	{
+    	$Now = new DateTime(); 
+		$Target = new DateTime(); 
+		$Target->modify('+1 day'); 
+		$Target->setTime(0,0,1); 
+		$Diff =  $Target->getTimestamp() - $Now->getTimestamp(); 
+		$Interval = $Diff * 1000;  
+    	$this->SetTimerInterval("DailyReset", $Interval);
     }
 }
 ?>
