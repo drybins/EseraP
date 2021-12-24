@@ -9,7 +9,7 @@ class EseraGaszaehler extends IPSModule
         //You cannot use variables here. Just static values.
         $this->RegisterPropertyInteger("CounterID", 0);
         $this->RegisterPropertyInteger("Impulses", 1000);
-        $this->RegisterPropertyInteger("AnnualLimit", 1000);
+        $this->RegisterPropertyFloat("AnnualLimit", 0.9692);
         $this->RegisterPropertyInteger("LimitActive", 100);
 		
 		$this->RegisterVariableInteger("Counter", "Counter", "", 1);
@@ -69,7 +69,7 @@ class EseraGaszaehler extends IPSModule
 		//$FactorKWh = 0.9692*11.293;
 		SetValue($this->GetIDForIdent("VerbrauchTagkwh"), $CounterTag * $Factor * $Zustandszahl * $Brennwert);
 		
-		//$this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
+		$this->DebugMessage("Counter", "Zustandszahl: " . AnnualLimit);
         //$this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
 	}
 	
