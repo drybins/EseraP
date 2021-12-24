@@ -32,6 +32,13 @@ class EseraGaszaehler extends IPSModule
 		$this->RegisterVariableFloat("VerbrauchVormonatm", "Verbrauch Vormonat in m³", "~Gas", 33);		
 		$this->RegisterVariableFloat("VerbrauchVormonatkwh", "Verbrauch Vormonat in kWh", "Kirsch.kWh", 34);
 		$this->RegisterVariableFloat("VerbrauchVormonatEuro", "Verbrauch Vormonat in €", "~Euro", 35);
+		
+		$this->RegisterVariableInteger("JahrCounter", "Counter Jahr", "", 40);
+        $this->RegisterVariableFloat("VerbrauchJahrm", "Verbrauch am Jahr in m³", "~Gas", 41);
+        $this->RegisterVariableFloat("VerbrauchJahrwh", "Verbrauch am Jahr in kwh", "Kirsch.kWh", 42);
+		$this->RegisterVariableFloat("VerbrauchVorjahrm", "Verbrauch Vorjahr in m³", "~Gas", 43);		
+		$this->RegisterVariableFloat("VerbrauchVorjahrkwh", "Verbrauch Vorjahr in kWh", "Kirsch.kWh", 44);
+		$this->RegisterVariableFloat("VerbrauchVorjahrEuro", "Verbrauch Vorjahr in €", "~Euro", 45);
 
 	    $ArchiveHandlerID = IPS_GetInstanceListByModuleID('{43192F0B-135B-4CE7-A0A7-1475603F3060}');
 	    AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVortagm"), true);
@@ -107,9 +114,19 @@ class EseraGaszaehler extends IPSModule
 		$Brennwert = 11.293;
 		//$FactorKWh = 0.9692*11.293;
 		SetValue($this->GetIDForIdent("VerbrauchTagkwh"), $CounterTag * $Factor * $Zustandszahl * $Brennwert);
-		echo "Zustandszahl = $AnnualLimit \r\n";
-		$this->DebugMessage("Counter", "Zustandszahl: " . $AnnualLimit);
-        //$this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
+		//echo "Zustandszahl = $AnnualLimit \r\n";
+
+		// Counter Monat  
+        $CounterMonat = GetValue($this->GetIDForIdent("MonatCounter")) + $delta;
+        SetValue($this->GetIDForIdent("MonatCounter"), $CounterMonat);
+        SetValue($this->GetIDForIdent("VerbrauchMonatm"), $CounterMonat * $Factor);
+		SetValue($this->GetIDForIdent("VerbrauchMonatkwh"), $CounterTag * $Factor * $Zustandszahl * $Brennwert);
+		
+		// Counter Jahr  
+        $CounterJahr = GetValue($this->GetIDForIdent("JahrCounter")) + $delta;
+        SetValue($this->GetIDForIdent("JahrCounter"), $CounterMonat);
+        SetValue($this->GetIDForIdent("VerbraucJahrm"), $CounterMonat * $Factor);
+		SetValue($this->GetIDForIdent("VerbrauchJahrkwh"), $CounterTag * $Factor * $Zustandszahl * $Brennwert);
 	}
 	
 	private function DebugMessage($Sender, $Message)
