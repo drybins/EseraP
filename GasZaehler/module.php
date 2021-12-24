@@ -17,7 +17,7 @@ class EseraGaszaehler extends IPSModule
 		
 		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 3);
 		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 4);
-		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in KWh", "Kirsch.KWh", 5);
+		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in KWh", "Kirsch.kWh", 5);
 		
 		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounterG($_IPS[\'TARGET\']);'); 
 		
@@ -66,7 +66,7 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("VerbrauchTagm"), $CounterTag * $Factor);
 		$Zustandszahl = 0.9692;
 		$Brennwert = 11.293;
-		//actorKWh = 0.9692*11.293;
+		$FactorKWh = 0.9692*11.293;
 		//SetValue($this->GetIDForIdent("VerbrauchTagKWh"), $CounterTag * $Factor * 0,9692 * 11,293);
 		
 		//$this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
