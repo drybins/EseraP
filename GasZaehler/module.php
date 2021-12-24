@@ -35,7 +35,7 @@ class EseraGaszaehler extends IPSModule
 		
 		$this->RegisterVariableInteger("JahrCounter", "Counter Jahr", "", 40);
         $this->RegisterVariableFloat("VerbrauchJahrm", "Verbrauch im Jahr in m³", "~Gas", 41);
-        $this->RegisterVariableFloat("VerbrauchJahrwh", "Verbrauch im Jahr in kwh", "Kirsch.kWh", 42);
+        $this->RegisterVariableFloat("VerbrauchJahrkwh", "Verbrauch im Jahr in kwh", "Kirsch.kWh", 42);
 		$this->RegisterVariableFloat("VerbrauchVorjahrm", "Verbrauch Vorjahr in m³", "~Gas", 43);		
 		$this->RegisterVariableFloat("VerbrauchVorjahrkwh", "Verbrauch Vorjahr in kWh", "Kirsch.kWh", 44);
 		$this->RegisterVariableFloat("VerbrauchVorjahrEuro", "Verbrauch Vorjahr in €", "~Euro", 45);
