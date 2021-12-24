@@ -194,7 +194,6 @@ class EseraGaszaehler extends IPSModule
 		$Target->setTime(0,0,5); 
 		$Diff =  $Target->getTimestamp() - $Now->getTimestamp(); 
 		$Interval = $Diff * 1000;  
-		echo "Month";
 		//$this->SetTimerInterval("MonthlyReset", $Interval);
 		SetValue($this->GetIDForIdent("MonthlyResetTime"), $Target->getTimestamp());
     }
