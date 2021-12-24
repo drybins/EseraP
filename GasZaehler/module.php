@@ -67,8 +67,8 @@ class EseraGaszaehler extends IPSModule
 
         $this->SetTimerInterval("Refresh", 180 * 1000);
         $this->SetDailyTimerInterval();
-        //$this->SetMonthlyTimerInterval();
-        //$this->SetYearlyTimerInterval();    
+        $this->SetMonthlyTimerInterval();
+        $this->SetYearlyTimerInterval();    
     }
 
 	public function ReceiveData($JSONString) 
