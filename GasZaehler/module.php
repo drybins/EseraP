@@ -50,7 +50,8 @@ class EseraGaszaehler extends IPSModule
 		
 		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounterG($_IPS[\'TARGET\']);');
 		$this->RegisterTimer("DailyReset", 0, 'ESERA_ResetPowerMeterDaily($_IPS[\'TARGET\']);');
-		
+		$this->RegisterTimer("MonthlyReset", 0, 'ESERA_ResetPowerMeterMonthly($_IPS[\'TARGET\']);');
+        $this->RegisterTimer("YearlyReset", 0, 'ESERA_ResetPowerMeterYearly($_IPS[\'TARGET\']);');
 	}
 	
     public function Destroy()
@@ -86,6 +87,20 @@ class EseraGaszaehler extends IPSModule
 		SetValue($this->GetIDForIdent("VerbrauchVortagEuro"), GetValue($this->GetIDForIdent("VerbrauchTagkwh") * 0.1066));
         SetValue($this->GetIDForIdent("VerbrauchTagm"), 0);
 		SetValue($this->GetIDForIdent("VerbrauchTagkwh"), 0);
+    }
+	public function ResetPowerMeterMonthly(){       
+        SetValue($this->GetIDForIdent("MonatCounter"), 0);
+        SetValue($this->GetIDForIdent("VerbrauchVormonatm"), GetValue($this->GetIDForIdent("VerbrauchMonatm")));
+		SetValue($this->GetIDForIdent("VerbrauchVormonatkwh"), GetValue($this->GetIDForIdent("VerbrauchMonatkwh")));
+		SetValue($this->GetIDForIdent("VerbrauchVormonatEuro"), GetValue($this->GetIDForIdent("VerbrauchMonatkwh") * 0.1066));
+        SetValue($this->GetIDForIdent("VerbrauchVormonatm"), 0);
+		SetValue($this->GetIDForIdent("VerbrauchVormonatkwh"), 0);
+    }
+    public function ResetPowerMeterYearly(){
+        //SetValue($this->GetIDForIdent("JahrCounter"), 0);
+        //SetValue($this->GetIDForIdent("LeistungVorjahr"), GetValue($this->GetIDForIdent("LeistungJahr")));
+        //SetValue($this->GetIDForIdent("LeistungJahr"), 0);
+		//SetValue($this->GetIDForIdent("AnnualLimit"), 0);
     }
 	
 	public function RefreshCounterG()
@@ -179,6 +194,7 @@ class EseraGaszaehler extends IPSModule
 		$Target->setTime(0,0,5); 
 		$Diff =  $Target->getTimestamp() - $Now->getTimestamp(); 
 		$Interval = $Diff * 1000;  
+		echo "Month";
 		//$this->SetTimerInterval("MonthlyReset", $Interval);
 		SetValue($this->GetIDForIdent("MonthlyResetTime"), $Target->getTimestamp());
     }
