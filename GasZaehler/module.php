@@ -13,12 +13,13 @@ class EseraGaszaehler extends IPSModule
         $this->RegisterPropertyInteger("LimitActive", 100);
 		
 		$this->RegisterVariableInteger("Counter", "Counter", "", 1);
-		$this->RegisterVariableFloat("Leistung", "Leistung", "~Gas", 2);
+		$this->RegisterVariableFloat("Verbrauch", "Verbrauch", "~Gas", 2);
 		
-		//$this->RegisterTimer("Refresh", 0, "echo 'Hallo Welt';"); 
+		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 3);
+		$this->RegisterVariableFloat("VerbrauchTag", "Verbrauch am Tag", "~Gas", 4);
+		
 		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounterG($_IPS[\'TARGET\']);'); 
-		//$this->DebugMessage("Counter", "CounterOld: " . 'ESERA_RefreshCounter($_IPS[\'TARGET\']);');
-
+		
 	}
 	
     public function Destroy()
@@ -31,7 +32,7 @@ class EseraGaszaehler extends IPSModule
 	{
         //Never delete this line!
         parent::ApplyChanges();
-        $this->SetTimerInterval("Refresh", 10000);
+        $this->SetTimerInterval("Refresh", 180 * 1000);
         //$this->SetDailyTimerInterval();
         //$this->SetMonthlyTimerInterval();
         //$this->SetYearlyTimerInterval();    
@@ -56,10 +57,15 @@ class EseraGaszaehler extends IPSModule
 		$delta_qm = ($delta * $Factor) * 20;
 		
 		SetValue($this->GetIDForIdent("Counter"), $CounterNew);
-		SetValue($this->GetIDForIdent("Leistung"), $delta_qm);
+		SetValue($this->GetIDForIdent("Verbrauch"), $delta_qm);
 		
-		$this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
-        	$this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
+		//Counter Tag
+		$CounterTag = GetValue($this->GetIDForIdent("TagCounter")) + $delta;
+        SetValue($this->GetIDForIdent("TagCounter"), $CounterTag);
+        SetValue($this->GetIDForIdent("VerbrauchTag"), $CounterTag * $Factor);
+		
+		//$this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
+        //$this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
 	}
 	
 	private function DebugMessage($Sender, $Message)
