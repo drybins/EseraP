@@ -56,7 +56,7 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("TagCounter"), 0);
         SetValue($this->GetIDForIdent("VerbrauchVortagm"), GetValue($this->GetIDForIdent("VerbrauchTagm")));
 		SetValue($this->GetIDForIdent("VerbrauchVortagkwh"), GetValue($this->GetIDForIdent("VerbrauchTagkwh")));
-		SetValue($this->GetIDForIdent("VerbrauchVortagEuro"), GetValue($this->GetIDForIdent("VerbrauchTagkwh") * 0.1066)));
+		SetValue($this->GetIDForIdent("VerbrauchVortagEuro"), GetValue($this->GetIDForIdent("VerbrauchTagkwh") * 0.1066));
         SetValue($this->GetIDForIdent("VerbrauchTagm"), 0);
 		SetValue($this->GetIDForIdent("VerbrauchTagkwh"), 0);
     }
