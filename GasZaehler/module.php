@@ -21,21 +21,21 @@ class EseraGaszaehler extends IPSModule
 		
 		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 20);
 		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 21);
-		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in kwh", "Kirsch.kWh", 22);
+		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch amTag in kwh", "Kirsch.kWh", 22);
 		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 23);		
 		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 24);
 		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 25);
 	    
 		$this->RegisterVariableInteger("MonatCounter", "Counter Monat", "", 30);
-        $this->RegisterVariableFloat("VerbrauchMonatm", "Verbrauch am Monat in m³", "~Gas", 31);
-        $this->RegisterVariableFloat("VerbrauchMonatkwh", "Verbrauch am Monat in kwh", "Kirsch.kWh", 32);
+        $this->RegisterVariableFloat("VerbrauchMonatm", "Verbrauch im Monat in m³", "~Gas", 31);
+        $this->RegisterVariableFloat("VerbrauchMonatkwh", "Verbrauch im Monat in kwh", "Kirsch.kWh", 32);
 		$this->RegisterVariableFloat("VerbrauchVormonatm", "Verbrauch Vormonat in m³", "~Gas", 33);		
 		$this->RegisterVariableFloat("VerbrauchVormonatkwh", "Verbrauch Vormonat in kWh", "Kirsch.kWh", 34);
 		$this->RegisterVariableFloat("VerbrauchVormonatEuro", "Verbrauch Vormonat in €", "~Euro", 35);
 		
 		$this->RegisterVariableInteger("JahrCounter", "Counter Jahr", "", 40);
-        $this->RegisterVariableFloat("VerbrauchJahrm", "Verbrauch am Jahr in m³", "~Gas", 41);
-        $this->RegisterVariableFloat("VerbrauchJahrwh", "Verbrauch am Jahr in kwh", "Kirsch.kWh", 42);
+        $this->RegisterVariableFloat("VerbrauchJahrm", "Verbrauch im Jahr in m³", "~Gas", 41);
+        $this->RegisterVariableFloat("VerbrauchJahrwh", "Verbrauch im Jahr in kwh", "Kirsch.kWh", 42);
 		$this->RegisterVariableFloat("VerbrauchVorjahrm", "Verbrauch Vorjahr in m³", "~Gas", 43);		
 		$this->RegisterVariableFloat("VerbrauchVorjahrkwh", "Verbrauch Vorjahr in kWh", "Kirsch.kWh", 44);
 		$this->RegisterVariableFloat("VerbrauchVorjahrEuro", "Verbrauch Vorjahr in €", "~Euro", 45);
