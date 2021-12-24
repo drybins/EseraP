@@ -78,8 +78,8 @@ class EseraGaszaehler extends IPSModule
 	public function ResetPowerMeterDaily()
 	{
         $this->SetDailyTimerInterval();
-		//$this->SetMonthlyTimerInterval();
-		//$this->SetYearlyTimerInterval();
+		$this->SetMonthlyTimerInterval();
+		$this->SetYearlyTimerInterval();
         SetValue($this->GetIDForIdent("TagCounter"), 0);
         SetValue($this->GetIDForIdent("VerbrauchVortagm"), GetValue($this->GetIDForIdent("VerbrauchTagm")));
 		SetValue($this->GetIDForIdent("VerbrauchVortagkwh"), GetValue($this->GetIDForIdent("VerbrauchTagkwh")));
@@ -169,9 +169,29 @@ class EseraGaszaehler extends IPSModule
 		$Tar = $Target->getTimestamp();
 		$Interval = $Diff * 1000;  
 	   	$this->SetTimerInterval("DailyReset", $Interval);
-		//echo "Interval = $Interval \r\n";
-		//echo "Target =  $Tar";
 		SetValue($this->GetIDForIdent("DailyResetTime"), $Tar);
+    }
+	protected function SetMonthlyTimerInterval()
+	{
+        $Now = new DateTime(); 
+		$Target = new DateTime(); 
+		$Target->modify('first day of next month');
+		$Target->setTime(0,0,5); 
+		$Diff =  $Target->getTimestamp() - $Now->getTimestamp(); 
+		$Interval = $Diff * 1000;  
+		//$this->SetTimerInterval("MonthlyReset", $Interval);
+		SetValue($this->GetIDForIdent("MonthlyResetTime"), $Target->getTimestamp());
+    }
+    protected function SetYearlyTimerInterval()
+	{
+        $Now = new DateTime(); 
+		$Target = new DateTime(); 
+		$Target->modify('1st January Next Year');
+		$Target->setTime(0,0,10); 
+		$Diff = $Target->getTimestamp() - $Now->getTimestamp(); 
+		$Interval = $Diff * 1000;  
+		//$this->SetTimerInterval("YearlyReset", $Interval);
+		SetValue($this->GetIDForIdent("YearlyResetTime"), $Target->getTimestamp());
     }
 }
 ?>
