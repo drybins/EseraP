@@ -13,16 +13,18 @@ class EseraGaszaehler extends IPSModule
         $this->RegisterPropertyInteger("LimitActive", 100);
 		
 		$this->RegisterVariableInteger("DailyReset", "Tages Reset Time", "~UnixTimestamp", 1);
+	    $this->RegisterVariableInteger("DailyReset", "Monats Reset Time", "~UnixTimestamp", 2);
+		$this->RegisterVariableInteger("DailyReset", "Jahres Reset Time", "~UnixTimestamp", 3);
 		
 		$this->RegisterVariableInteger("Counter", "Counter", "", 10);
 		$this->RegisterVariableFloat("Verbrauch", "Verbrauch", "~Gas", 11);
 		
-		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 12);
-		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 13);
-		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in kwh", "Kirsch.kWh", 14);
-		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 15);		
-		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 16);
-		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 17);
+		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 20;
+		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 21;
+		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in kwh", "Kirsch.kWh", 22;
+		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 23);		
+		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 24);
+		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 25);
 
 	    $ArchiveHandlerID = IPS_GetInstanceListByModuleID('{43192F0B-135B-4CE7-A0A7-1475603F3060}');
 	    AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVortagm"), true);
@@ -140,6 +142,7 @@ class EseraGaszaehler extends IPSModule
 		$Diff =  $Target->getTimestamp() - $Now->getTimestamp(); 
 		$Interval = $Diff * 1000;  
     	$this->SetTimerInterval("DailyReset", $Interval);
+		SetValue($this->GetIDForIdent("VerbrauchTagm"), $Interval);
     }
 }
 ?>
