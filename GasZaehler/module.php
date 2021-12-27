@@ -184,11 +184,6 @@ class EseraGaszaehler extends IPSModule
             break;
         }    
     }
-	
-	private function DebugMessage($Sender, $Message)
-	{
-        $this->SendDebug($Sender, $Message, 0);
-    }
 		
 	protected function SetDailyTimerInterval()
 	{
