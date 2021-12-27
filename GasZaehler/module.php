@@ -9,8 +9,8 @@ class EseraGaszaehler extends IPSModule
         //You cannot use variables here. Just static values.
         $this->RegisterPropertyInteger("CounterID", 0);
         $this->RegisterPropertyInteger("Impulses", 1000);
-        $this->RegisterPropertyFloat("AnnualLimit", 0.9692);
-        $this->RegisterPropertyInteger("LimitActive", 100);
+        $this->RegisterPropertyFloat("Zustandszahl", 0.9692);
+        $this->RegisterPropertyInteger("Brennwert", 11.293);
 		
 		$this->RegisterVariableInteger("DailyResetTime", "Tages Reset Time", "~UnixTimestamp", 1);
 	    $this->RegisterVariableInteger("MonthlyResetTime", "Monats Reset Time", "~UnixTimestamp", 2);
@@ -21,7 +21,7 @@ class EseraGaszaehler extends IPSModule
 		
 		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 20);
 		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 21);
-		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch amTag in kwh", "Kirsch.kWh", 22);
+		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in kwh", "Kirsch.kWh", 22);
 		$this->RegisterVariableFloat("VerbrauchVortagm", "Verbrauch Vortag in m³", "~Gas", 23);		
 		$this->RegisterVariableFloat("VerbrauchVortagkwh", "Verbrauch Vortag in kWh", "Kirsch.kWh", 24);
 		$this->RegisterVariableFloat("VerbrauchVortagEuro", "Verbrauch Vortag in €", "~Euro", 25);
@@ -114,7 +114,8 @@ class EseraGaszaehler extends IPSModule
 	private function Calculate()
 	{
 		// Jahresgrenzwert
-        $AnnualLimit = $this->ReadPropertyFloat("AnnualLimit");
+        $Zustandszahl = $this->ReadPropertyFloat("Zustandszahl");
+		$Brennwert = $this->ReadPropertyFloat("Brennwert");
 		$CounterOld = GetValue($this->GetIDForIdent("Counter"));
 		$CounterNew = GetValue($this->ReadPropertyInteger("CounterID"));
 		$delta = $CounterNew - $CounterOld;
@@ -135,8 +136,8 @@ class EseraGaszaehler extends IPSModule
 		$CounterTag = GetValue($this->GetIDForIdent("TagCounter")) + $delta;
         SetValue($this->GetIDForIdent("TagCounter"), $CounterTag);
         SetValue($this->GetIDForIdent("VerbrauchTagm"), $CounterTag * $Factor);
-		$Zustandszahl = 0.9692;
-		$Brennwert = 11.293;
+		//$Zustandszahl = 0.9692;
+		//$Brennwert = 11.293;
 		//$FactorKWh = 0.9692*11.293;
 		SetValue($this->GetIDForIdent("VerbrauchTagkwh"), $CounterTag * $Factor * $Zustandszahl * $Brennwert);
 		//echo "Zustandszahl = $AnnualLimit \r\n";
