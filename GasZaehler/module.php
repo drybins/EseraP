@@ -184,6 +184,11 @@ class EseraGaszaehler extends IPSModule
             break;
         }    
     }
+	
+	private function DebugMessage($Sender, $Message)
+	{
+        $this->SendDebug($Sender, $Message, 0);
+    }
 		
 	protected function SetDailyTimerInterval()
 	{
@@ -218,11 +223,6 @@ class EseraGaszaehler extends IPSModule
 		$Interval = $Diff * 1000;  
 		//$this->SetTimerInterval("YearlyReset", $Interval);
 		SetValue($this->GetIDForIdent("YearlyResetTime"), $Target->getTimestamp());
-    }
-	
-	 private function DebugMessage($Sender, $Message)
-	 {
-        $this->SendDebug($Sender, $Message, 0);
     }
 }
 ?>
