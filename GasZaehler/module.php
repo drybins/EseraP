@@ -145,7 +145,7 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("VerbrauchJahrm"), $CounterJahr * $Factor);
 		SetValue($this->GetIDForIdent("VerbrauchJahrkwh"), $CounterJahr * $Factor * $Zustandszahl * $Brennwert);
 		
-		SetValue($this->GetIDForIdent("VerbrauchVortagEuro"), GetValue($this->GetIDForIdent("VerbrauchVortagkwh") * 0.1066));
+		SetValue($this->GetIDForIdent("VerbrauchVortagEuro"), GetValue($this->GetIDForIdent("VerbrauchVortagkwh")) * 0.1066));
 	}
 	
 	private function DebugMessage($Sender, $Message)
