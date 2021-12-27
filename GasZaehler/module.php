@@ -117,7 +117,7 @@ class EseraGaszaehler extends IPSModule
         $Zustandszahl = $this->ReadPropertyFloat("Zustandszahl");
 		$Brennwert = $this->ReadPropertyFloat("Brennwert");
 		$CounterOld = GetValue($this->GetIDForIdent("Counter"));
-		if($CounterOld == 0) Then
+		if($CounterOld == 0)
 		{
 			SetValue($this->GetIDForIdent("Counter"), $CounterOld);
 		}
