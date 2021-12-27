@@ -117,20 +117,28 @@ class EseraGaszaehler extends IPSModule
         $Zustandszahl = $this->ReadPropertyFloat("Zustandszahl");
 		$Brennwert = $this->ReadPropertyFloat("Brennwert");
 		$CounterOld = GetValue($this->GetIDForIdent("Counter"));
-		$CounterNew = GetValue($this->ReadPropertyInteger("CounterID"));
-		$delta = $CounterNew - $CounterOld;
-		$Factor = $this->GetFactor($this->ReadPropertyInteger("Impulses"));
-		$delta_qm = ($delta * $Factor) * 20;
+		if($CounterOld == 0) Then
+		{
+			SetValue($this->GetIDForIdent("Counter"), $CounterOld);
+		}
+		Else
+		{
+			$CounterNew = GetValue($this->ReadPropertyInteger("CounterID"));
+			$delta = $CounterNew - $CounterOld;
+			$Factor = $this->GetFactor($this->ReadPropertyInteger("Impulses"));
+			$delta_qm = ($delta * $Factor) * 20;
 		
-		SetValue($this->GetIDForIdent("Counter"), $CounterNew);
-		SetValue($this->GetIDForIdent("Verbrauch"), $delta_qm);
-		
+			SetValue($this->GetIDForIdent("Counter"), $CounterNew);
+			SetValue($this->GetIDForIdent("Verbrauch"), $delta_qm);
+		}
 		// Only for debugging
         $this->DebugMessage("GasZähler", "CounterOld: " . $CounterOld);
         $this->DebugMessage("GasZähler", "CounterNew: " . $CounterNew);
         $this->DebugMessage("GasZähler", "Delta: " . $delta);
         $this->DebugMessage("GasZähler", "Factor: " . $Factor);
         $this->DebugMessage("GasZähler", "Delta kWh: " . $delta_qm);
+		$this->DebugMessage("GasZähler", "Zustandszahl: " . $Zustandszahl);
+		$this->DebugMessage("GasZähler", "Brennwert: " . $Brennwert);
 		
 		//Counter Tag
 		$CounterTag = GetValue($this->GetIDForIdent("TagCounter")) + $delta;
