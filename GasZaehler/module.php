@@ -125,11 +125,11 @@ class EseraGaszaehler extends IPSModule
 		SetValue($this->GetIDForIdent("Verbrauch"), $delta_qm);
 		
 		// Only for debugging
-        $this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
-        $this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
-        $this->DebugMessage("Counter", "Delta: " . $delta);
-        $this->DebugMessage("Counter", "Factor: " . $Factor);
-        $this->DebugMessage("Counter", "Delta kWh: " . $delta_qm);
+        $this->DebugMessage("Gas Zähler", "CounterOld: " . $CounterOld);
+        $this->DebugMessage("Gas Zähler", "CounterNew: " . $CounterNew);
+        $this->DebugMessage("Gas Zähler", "Delta: " . $delta);
+        $this->DebugMessage("Gas Zähler", "Factor: " . $Factor);
+        $this->DebugMessage("Gas Zähler", "Delta kWh: " . $delta_qm);
 		
 		//Counter Tag
 		$CounterTag = GetValue($this->GetIDForIdent("TagCounter")) + $delta;
