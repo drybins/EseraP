@@ -10,7 +10,7 @@ class EseraGaszaehler extends IPSModule
         $this->RegisterPropertyInteger("CounterID", 0);
         $this->RegisterPropertyInteger("Impulses", 1000);
         $this->RegisterPropertyFloat("Zustandszahl", 0.9692);
-        $this->RegisterPropertyInteger("Brennwert", 11.293);
+        $this->RegisterPropertyFloat("Brennwert", 11.293);
 		
 		$this->RegisterVariableInteger("DailyResetTime", "Tages Reset Time", "~UnixTimestamp", 1);
 	    $this->RegisterVariableInteger("MonthlyResetTime", "Monats Reset Time", "~UnixTimestamp", 2);
