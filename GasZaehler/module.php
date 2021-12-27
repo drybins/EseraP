@@ -124,6 +124,13 @@ class EseraGaszaehler extends IPSModule
 		SetValue($this->GetIDForIdent("Counter"), $CounterNew);
 		SetValue($this->GetIDForIdent("Verbrauch"), $delta_qm);
 		
+		// Only for debugging
+        $this->DebugMessage("Counter", "CounterOld: " . $CounterOld);
+        $this->DebugMessage("Counter", "CounterNew: " . $CounterNew);
+        $this->DebugMessage("Counter", "Delta: " . $delta);
+        $this->DebugMessage("Counter", "Factor: " . $Factor);
+        $this->DebugMessage("Counter", "Delta kWh: " . $delta_qm);
+		
 		//Counter Tag
 		$CounterTag = GetValue($this->GetIDForIdent("TagCounter")) + $delta;
         SetValue($this->GetIDForIdent("TagCounter"), $CounterTag);
@@ -211,6 +218,11 @@ class EseraGaszaehler extends IPSModule
 		$Interval = $Diff * 1000;  
 		//$this->SetTimerInterval("YearlyReset", $Interval);
 		SetValue($this->GetIDForIdent("YearlyResetTime"), $Target->getTimestamp());
+    }
+	
+	 private function DebugMessage($Sender, $Message)
+	 {
+        $this->SendDebug($Sender, $Message, 0);
     }
 }
 ?>
