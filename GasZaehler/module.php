@@ -84,7 +84,8 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("TagCounter"), 0);
         SetValue($this->GetIDForIdent("VerbrauchVortagm"), GetValue($this->GetIDForIdent("VerbrauchTagm")));
 		SetValue($this->GetIDForIdent("VerbrauchVortagkwh"), GetValue($this->GetIDForIdent("VerbrauchTagkwh")));
-		SetValue($this->GetIDForIdent("VerbrauchVortagEuro"), GetValue($this->GetIDForIdent("VerbrauchVortagkwh") * 0.1066));
+		$ID1 = $this->GetIDForIdent("VerbrauchVortagkwh");
+		SetValue($this->GetIDForIdent("VerbrauchVortagEuro"), GetValue($ID1) * 0.1066);
         SetValue($this->GetIDForIdent("VerbrauchTagm"), 0);
 		SetValue($this->GetIDForIdent("VerbrauchTagkwh"), 0);
     }
@@ -144,8 +145,7 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("JahrCounter"), $CounterJahr);
         SetValue($this->GetIDForIdent("VerbrauchJahrm"), $CounterJahr * $Factor);
 		SetValue($this->GetIDForIdent("VerbrauchJahrkwh"), $CounterJahr * $Factor * $Zustandszahl * $Brennwert);
-		$ID1 = $this->GetIDForIdent("VerbrauchVortagkwh");
-		SetValue($this->GetIDForIdent("VerbrauchVortagEuro"), GetValue($ID1) * 0.1066);
+
 	}
 	
 	private function DebugMessage($Sender, $Message)
