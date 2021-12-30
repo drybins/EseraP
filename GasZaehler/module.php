@@ -12,6 +12,8 @@ class EseraGaszaehler extends IPSModule
         $this->RegisterPropertyFloat("Zustandszahl", 0.9692);
         $this->RegisterPropertyFloat("Brennwert", 11.293);
 		
+		$this->RegisterPropertyFloat("Centkwh", 0.1066);
+		
 		$this->RegisterVariableInteger("DailyResetTime", "Tages Reset Time", "~UnixTimestamp", 1);
 	    $this->RegisterVariableInteger("MonthlyResetTime", "Monats Reset Time", "~UnixTimestamp", 2);
 		$this->RegisterVariableInteger("YearlyResetTime", "Jahres Reset Time", "~UnixTimestamp", 3);
@@ -93,7 +95,9 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("MonatCounter"), 0);
         SetValue($this->GetIDForIdent("VerbrauchVormonatm"), GetValue($this->GetIDForIdent("VerbrauchMonatm")));
 		SetValue($this->GetIDForIdent("VerbrauchVormonatkwh"), GetValue($this->GetIDForIdent("VerbrauchMonatkwh")));
-		SetValue($this->GetIDForIdent("VerbrauchVormonatEuro"), GetValue($this->GetIDForIdent("VerbrauchVormonatkwh") * 0.1066));
+		$ID2 = $this->GetIDForIdent("VerbrauchVormonatkwh");
+		SetValue($this->GetIDForIdent("VerbrauchVormonatEuro"), GetValue($ID2) * 0.1066);
+		//SetValue($this->GetIDForIdent("VerbrauchVormonatEuro"), GetValue($this->GetIDForIdent("VerbrauchVormonatkwh") * 0.1066));
         SetValue($this->GetIDForIdent("VerbrauchMonatm"), 0);
 		SetValue($this->GetIDForIdent("VerbrauchMonatkwh"), 0);
     }
@@ -101,7 +105,9 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("JahrCounter"), 0);
         SetValue($this->GetIDForIdent("VerbrauchVorjahrm"), GetValue($this->GetIDForIdent("VerbrauchJahrm")));
 		SetValue($this->GetIDForIdent("VerbrauchVorjahrkwh"), GetValue($this->GetIDForIdent("VerbrauchJahrkwh")));
-		SetValue($this->GetIDForIdent("VerbrauchVorjahrEuro"), GetValue($this->GetIDForIdent("VerbrauchVorjahrkwh") * 0.1066));
+		$ID3 = $this->GetIDForIdent("VerbrauchVorjahrkwh");
+		SetValue($this->GetIDForIdent("VerbrauchVorjahrEuro"), GetValue($ID3) * 0.1066);
+		//SetValue($this->GetIDForIdent("VerbrauchVorjahrEuro"), GetValue($this->GetIDForIdent("VerbrauchVorjahrkwh") * 0.1066));
         SetValue($this->GetIDForIdent("VerbrauchJahrm"), 0);
 		SetValue($this->GetIDForIdent("VerbrauchJahrkwh"), 0);
     }
@@ -139,6 +145,7 @@ class EseraGaszaehler extends IPSModule
         $this->DebugMessage("GasZähler", "Delta kWh: " . $delta_qm);
 		$this->DebugMessage("GasZähler", "Zustandszahl: " . $Zustandszahl);
 		$this->DebugMessage("GasZähler", "Brennwert: " . $Brennwert);
+		$this->DebugMessage("GasZähler", "Cent je KwH: " . $Centkwh);
 		
 		//Counter Tag
 		$CounterTag = GetValue($this->GetIDForIdent("TagCounter")) + $delta;
