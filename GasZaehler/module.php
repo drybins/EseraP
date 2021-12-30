@@ -122,6 +122,7 @@ class EseraGaszaehler extends IPSModule
 		// Jahresgrenzwert
         $Zustandszahl = $this->ReadPropertyFloat("Zustandszahl");
 		$Brennwert = $this->ReadPropertyFloat("Brennwert");
+		$Centkwh = $this->ReadPropertyFloat("Centkwh");
 		$CounterOld = GetValue($this->GetIDForIdent("Counter"));
 		if($CounterOld == 0)
 		{
@@ -145,7 +146,7 @@ class EseraGaszaehler extends IPSModule
         $this->DebugMessage("GasZähler", "Delta kWh: " . $delta_qm);
 		$this->DebugMessage("GasZähler", "Zustandszahl: " . $Zustandszahl);
 		$this->DebugMessage("GasZähler", "Brennwert: " . $Brennwert);
-		$this->DebugMessage("GasZähler", "CentjeKwH: " . $Centkwh);
+		$this->DebugMessage("GasZähler", "Cent je KwH: " . $Centkwh);
 		
 		//Counter Tag
 		$CounterTag = GetValue($this->GetIDForIdent("TagCounter")) + $delta;
