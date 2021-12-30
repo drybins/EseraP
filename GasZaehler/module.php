@@ -145,7 +145,7 @@ class EseraGaszaehler extends IPSModule
         $this->DebugMessage("GasZähler", "Delta kWh: " . $delta_qm);
 		$this->DebugMessage("GasZähler", "Zustandszahl: " . $Zustandszahl);
 		$this->DebugMessage("GasZähler", "Brennwert: " . $Brennwert);
-		$this->DebugMessage("GasZähler", "Cent je KwH: " . $Centkwh);
+		$this->DebugMessage("GasZähler", "CentjeKwH: " . $Centkwh);
 		
 		//Counter Tag
 		$CounterTag = GetValue($this->GetIDForIdent("TagCounter")) + $delta;
