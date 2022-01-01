@@ -238,7 +238,6 @@ class EseraGaszaehler extends IPSModule
 		$Target->setTime(0,0,10); 
 		$Diff = $Target->getTimestamp() - $Now->getTimestamp(); 
 		$Interval = $Diff * 1000;  
-		//$Interval = 10000;  
 		$this->SetTimerInterval("YearlyReset", $Interval);
 		SetValue($this->GetIDForIdent("YearlyResetTime"), $Target->getTimestamp());
     }
