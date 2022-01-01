@@ -92,9 +92,8 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("VerbrauchTagm"), 0);
 		SetValue($this->GetIDForIdent("VerbrauchTagkwh"), 0);
 		$this->DebugMessage("GasZähler_ResetPowerMeterDaily", "Cent je KwH: " . $Centkwh);
-		 $this->ResetPowerMeterMonthly(); 
-		$this->ResetPowerMeterYearly(); 
     }
+	
 	public function ResetPowerMeterMonthly()
 	{
 		$Centkwh = $this->ReadPropertyFloat("Centkwh");
@@ -107,6 +106,7 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("VerbrauchMonatm"), 0);
 		SetValue($this->GetIDForIdent("VerbrauchMonatkwh"), 0);
     }
+	
     public function ResetPowerMeterYearly()
 	{
         SetValue($this->GetIDForIdent("JahrCounter"), 0);
