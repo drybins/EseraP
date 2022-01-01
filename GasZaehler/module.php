@@ -83,7 +83,8 @@ class EseraGaszaehler extends IPSModule
         $this->SetDailyTimerInterval();
 		$this->SetMonthlyTimerInterval();
 		$this->SetYearlyTimerInterval();
-        SetValue($this->GetIDForIdent("TagCounter"), 0);
+        $Centkwh = $this->ReadPropertyFloat("Centkwh");
+		SetValue($this->GetIDForIdent("TagCounter"), 0);
         SetValue($this->GetIDForIdent("VerbrauchVortagm"), GetValue($this->GetIDForIdent("VerbrauchTagm")));
 		SetValue($this->GetIDForIdent("VerbrauchVortagkwh"), GetValue($this->GetIDForIdent("VerbrauchTagkwh")));
 		$ID1 = $this->GetIDForIdent("VerbrauchVortagkwh");
@@ -92,7 +93,9 @@ class EseraGaszaehler extends IPSModule
 		SetValue($this->GetIDForIdent("VerbrauchTagkwh"), 0);
 		$this->DebugMessage("GasZähler_ResetPowerMeterDaily", "Cent je KwH: " . $Centkwh);
     }
-	public function ResetPowerMeterMonthly(){       
+	public function ResetPowerMeterMonthly()
+	{
+		$Centkwh = $this->ReadPropertyFloat("Centkwh");
         SetValue($this->GetIDForIdent("MonatCounter"), 0);
         SetValue($this->GetIDForIdent("VerbrauchVormonatm"), GetValue($this->GetIDForIdent("VerbrauchMonatm")));
 		SetValue($this->GetIDForIdent("VerbrauchVormonatkwh"), GetValue($this->GetIDForIdent("VerbrauchMonatkwh")));
@@ -102,7 +105,8 @@ class EseraGaszaehler extends IPSModule
         SetValue($this->GetIDForIdent("VerbrauchMonatm"), 0);
 		SetValue($this->GetIDForIdent("VerbrauchMonatkwh"), 0);
     }
-    public function ResetPowerMeterYearly(){
+    public function ResetPowerMeterYearly()
+	{
         SetValue($this->GetIDForIdent("JahrCounter"), 0);
         SetValue($this->GetIDForIdent("VerbrauchVorjahrm"), GetValue($this->GetIDForIdent("VerbrauchJahrm")));
 		SetValue($this->GetIDForIdent("VerbrauchVorjahrkwh"), GetValue($this->GetIDForIdent("VerbrauchJahrkwh")));
@@ -223,7 +227,8 @@ class EseraGaszaehler extends IPSModule
 		$Target->setTime(0,0,5); 
 		$Diff =  $Target->getTimestamp() - $Now->getTimestamp(); 
 		$Interval = $Diff * 1000;  
-		//$this->SetTimerInterval("MonthlyReset", $Interval);
+		$Interval = 1000;  
+		$this->SetTimerInterval("MonthlyReset", $Interval);
 		SetValue($this->GetIDForIdent("MonthlyResetTime"), $Target->getTimestamp());
     }
     protected function SetYearlyTimerInterval()
@@ -234,7 +239,7 @@ class EseraGaszaehler extends IPSModule
 		$Target->setTime(0,0,10); 
 		$Diff = $Target->getTimestamp() - $Now->getTimestamp(); 
 		$Interval = $Diff * 1000;  
-		//$this->SetTimerInterval("YearlyReset", $Interval);
+		$this->SetTimerInterval("YearlyReset", $Interval);
 		SetValue($this->GetIDForIdent("YearlyResetTime"), $Target->getTimestamp());
     }
 }
