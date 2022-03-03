@@ -188,23 +188,23 @@ class EseraGaszaehler extends IPSModule
 	{
         switch ($Impulses){
             case 250:
-              return (0.004);
+              return (0.04);
             break;
               
             case 500:
-              return (0.002);
+              return (0.00);
             break;
               
             case 800:
-              return (0.00125);
+              return (0.0125);
             break;
               
             case 1000:
-              return (0.001);
+              return (0.01);
             break;
               
             case 2000:
-              return (0.0005);
+              return (0.005);
             break;
         }    
     }
