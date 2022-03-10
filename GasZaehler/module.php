@@ -220,8 +220,8 @@ class EseraGaszaehler extends IPSModule
 		protected function SetHourTimerInterval()
 	{
     	$Now = new DateTime(); 
-		$Target = new DateTime(); 
-		$Target->modify('+1 hour'); 
+		//$Target = new DateTime(); 
+		//$Target->modify('+1 hour'); 
 		$stunde =  Date('H');
 		$stunde++; 
 		$Target->setTime($stunde,0,0); 
