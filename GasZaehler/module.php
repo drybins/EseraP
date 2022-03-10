@@ -223,6 +223,7 @@ class EseraGaszaehler extends IPSModule
 		$Target = new DateTime(); 
 		$Target->modify('+1 hour'); 
 		$stunde =  Date('H');
+		$stunde++; 
 		$Target->setTime($stunde,0,1); 
 		$Diff =  $Target->getTimestamp() - $Now->getTimestamp(); 
 		$Tar = $Target->getTimestamp();
