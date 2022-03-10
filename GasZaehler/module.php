@@ -13,7 +13,8 @@ class EseraGaszaehler extends IPSModule
         $this->RegisterPropertyFloat("Brennwert", 11.293);
 		
 		$this->RegisterPropertyFloat("Centkwh", 0.1066);
-		
+	    
+		$this->RegisterVariableInteger("HourResetTime", "Stunden Reset Time", "~UnixTimestamp", 0);
 		$this->RegisterVariableInteger("DailyResetTime", "Tages Reset Time", "~UnixTimestamp", 1);
 	    $this->RegisterVariableInteger("MonthlyResetTime", "Monats Reset Time", "~UnixTimestamp", 2);
 		$this->RegisterVariableInteger("YearlyResetTime", "Jahres Reset Time", "~UnixTimestamp", 3);
@@ -208,6 +209,18 @@ class EseraGaszaehler extends IPSModule
             break;
         }    
     }
+	
+		protected function SetHourTimerInterval()
+	{
+    	$Now = new DateTime(); 
+		$Target = new DateTime(); 
+		$Target->modify('+1 hour'); 
+		$Target->setTime(0,0,1); 
+		$Diff =  $Target->getTimestamp() - $Now->getTimestamp(); 
+		$Tar = $Target->getTimestamp();
+		$Interval = $Diff * 1000;  
+	   	//$this->SetTimerInterval("DailyReset", $Interval);
+		SetValue($this->GetIDForIdent("HourResetTime"), $Tar);
 		
 	protected function SetDailyTimerInterval()
 	{
