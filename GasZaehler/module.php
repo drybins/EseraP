@@ -52,6 +52,7 @@ class EseraGaszaehler extends IPSModule
 		AC_SetLoggingStatus($ArchiveHandlerID[0], $this->GetIDForIdent("VerbrauchVormonatEuro"), true);
 		
 		$this->RegisterTimer("Refresh", 0, 'ESERA_RefreshCounterG($_IPS[\'TARGET\']);');
+		$this->RegisterTimer("HourReset", 0, 'ESERA_ResetPowerMeterHour($_IPS[\'TARGET\']);');
 		$this->RegisterTimer("DailyReset", 0, 'ESERA_ResetPowerMeterDaily($_IPS[\'TARGET\']);');
 		$this->RegisterTimer("MonthlyReset", 0, 'ESERA_ResetPowerMeterMonthly($_IPS[\'TARGET\']);');
         $this->RegisterTimer("YearlyReset", 0, 'ESERA_ResetPowerMeterYearly($_IPS[\'TARGET\']);');
@@ -79,6 +80,11 @@ class EseraGaszaehler extends IPSModule
 	{
         // not implemented   
     }
+	
+		public function ResetPowerMeterHour()
+	{
+		$this->SetHourTimerInterval();
+	}
 	
 	public function ResetPowerMeterDaily()
 	{
@@ -220,7 +226,7 @@ class EseraGaszaehler extends IPSModule
 		$Diff =  $Target->getTimestamp() - $Now->getTimestamp(); 
 		$Tar = $Target->getTimestamp();
 		$Interval = $Diff * 1000;  
-	   	//$this->SetTimerInterval("DailyReset", $Interval);
+	   	$this->SetTimerInterval("DailyReset", $Interval);
 		SetValue($this->GetIDForIdent("HourResetTime"), $Tar);
 		}
 		
