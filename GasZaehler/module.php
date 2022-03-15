@@ -71,7 +71,7 @@ class EseraGaszaehler extends IPSModule
         //Never delete this line!
         parent::ApplyChanges();
 
-        $this->SetTimerInterval("Refresh", 180 * 1000);
+        $this->SetTimerInterval("Refresh", 60 * 1000);
 	$this->SetHourTimerInterval();
         $this->SetDailyTimerInterval();
         $this->SetMonthlyTimerInterval();
