@@ -106,6 +106,7 @@ class EseraGaszaehler extends IPSModule
 	
 	public function ResetPowerMeterMonthly()
 	{
+		$this->DebugMessage("GasZähler", "ResetPowerMeterMonthly started");
 		$Centkwh = $this->ReadPropertyFloat("Centkwh");
         SetValue($this->GetIDForIdent("MonatCounter"), 0);
         SetValue($this->GetIDForIdent("VerbrauchVormonatm"), GetValue($this->GetIDForIdent("VerbrauchMonatm")));
