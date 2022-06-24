@@ -116,6 +116,7 @@ class EseraGaszaehler extends IPSModule
 	public function RefreshCounterG()
 	{
        $this->calculate();   
+	   $this->DebugMessage("GasZähler", "RefreshCounterG startet" );
     }
 	
 	private function Calculate()
