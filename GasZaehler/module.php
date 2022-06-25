@@ -5,7 +5,7 @@ class EseraGaszaehler extends IPSModule
 	{
         //Never delete this line!
         parent::Create();
-        //These lines are parsed on Symcon Startup or Instance creation
+        //These lines are parsed on Symcon Startup or Instance creation 
         //You cannot use variables here. Just static values.
         $this->RegisterPropertyInteger("CounterID", 0);
         $this->RegisterPropertyInteger("Impulses", 1000);
