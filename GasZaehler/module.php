@@ -24,6 +24,10 @@ class EseraGaszaehler extends IPSModule
 	    
 	    $this->RegisterVariableFloat("VerbrauchTagEuro", "Verbrauch am Tag in Euro", "~Euro", 12);
 		
+		$this->RegisterVariableInteger("STDCounter", "Counter Stunde", "", 15);
+		$this->RegisterVariableFloat("VerbrauchStdm", "Verbrauch in der Stunde in m³", "~Gas", 16);
+		$this->RegisterVariableFloat("VerbrauchStdkwh", "Verbrauch in der Stunde in kwh", "Kirsch.kWh", 17); 
+		
 		$this->RegisterVariableInteger("TagCounter", "Counter Tag", "", 20);
 		$this->RegisterVariableFloat("VerbrauchTagm", "Verbrauch am Tag in m³", "~Gas", 21);
 		$this->RegisterVariableFloat("VerbrauchTagkwh", "Verbrauch am Tag in kwh", "Kirsch.kWh", 22);
