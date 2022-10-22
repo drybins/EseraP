@@ -177,7 +177,7 @@ class EseraGaszaehler extends IPSModule
 		//Counter Std
 		$CounterStd = GetValue($this->GetIDForIdent("StdCounter")) + $delta;
         SetValue($this->GetIDForIdent("StdCounter"), $CounterStd);
-        SetValue($this->GetIDForIdent("VerbrauchTagm"), $CounterStd * $Factor);
+        SetValue($this->GetIDForIdent("VerbrauchStdm"), $CounterStd * $Factor);
 		SetValue($this->GetIDForIdent("VerbrauchStdkwh"), $CounterStd * $Factor * $Zustandszahl * $Brennwert);
 		
 		//Counter Tag
